@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Puzzle 3: https://adventofcode.com/2020/day/2#part2
+# Puzzle 5: https://adventofcode.com/2020/day/3
 # Felix Wolfsteller
 
 # X horizontal, Y vertical
