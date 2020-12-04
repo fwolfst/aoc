@@ -11,7 +11,6 @@ values.each do |entry|
   count_range, letter, password = entry
 
   count_range = Range.new *count_range.split("-").map(&:to_i)
-  puts count_range
 
   letter = letter[0]
 
