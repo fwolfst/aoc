@@ -33,3 +33,6 @@ It feels hacky as in the 90s, but way more evil than back then.
 ### Puzzle 6
 Would feel good if I refactor a bit first. Did the bare minimum and will not
 understand the solution anymore in t+2h.
+
+### Puzzle 7
+Used a `Struct`. Yay!
