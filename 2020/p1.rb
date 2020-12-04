@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+# Puzzle 1: https://adventofcode.com/2020/day/1
+# Felix Wolfsteller
+
 values = ARGF.readlines.map {|l| l.to_i }
 
 searched_pair = []
