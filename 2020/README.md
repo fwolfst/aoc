@@ -17,3 +17,6 @@ Quite some time pressure, I go without tests and super-iterative brute-force app
 I can obviously extend the first puzzles solution.  Messy code, but will work.
 If the next puzzle wants an abstraction (*find `n` numbers summing to `m`*), I
 will have to rethink.
+
+### Puzzle 3
+
