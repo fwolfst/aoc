@@ -36,3 +36,6 @@ understand the solution anymore in t+2h.
 
 ### Puzzle 7
 Used a `Struct`. Yay!
+
+### Puzzle 8
+Regexp galore.
