@@ -39,3 +39,6 @@ Used a `Struct`. Yay!
 
 ### Puzzle 8
 Regexp galore.
+
+### Puzzle 9
+### Puzzle 10
