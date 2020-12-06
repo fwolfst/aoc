@@ -37,11 +37,16 @@ It feels hacky as in the 90s, but way more evil than back then.
 Would feel good if I refactor a bit first. Did the bare minimum and will not
 understand the solution anymore in t+2h.
 
-### Puzzle 7
+### Puzzle 7 (day4#1)
 Used a `Struct`. Yay!
 
-### Puzzle 8
+### Puzzle 8 (day4#2)
 Regexp galore.
 
-### Puzzle 9
-### Puzzle 10
+### Puzzle 9 (day5#1)
+Overdoing ranges. Index zero.
+### Puzzle 10 (day5#2)
+
+### Puzzle 11
+### Puzzle 12
+Break out of a single block iteration using `next <value>`.
