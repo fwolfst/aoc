@@ -50,3 +50,9 @@ Overdoing ranges. Index zero.
 ### Puzzle 11
 ### Puzzle 12
 Break out of a single block iteration using `next <value>`.
+
+### Puzzle 13 (day7#1)
+I thought I will need some NLP, but at the end I really needed a `uniq`, which
+took me too many minutes to figure it out.
+
+## Recap
