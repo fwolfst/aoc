@@ -52,7 +52,15 @@ Overdoing ranges. Index zero.
 Break out of a single block iteration using `next <value>`.
 
 ### Puzzle 13 (day7#1)
-I thought I will need some NLP, but at the end I really needed a `uniq`, which
-took me too many minutes to figure it out.
+I thought I will need some NLP and Graph theory but at the end I really needed
+a `uniq`, which took me too many minutes to figure it out.
+### Puzzle 14 (day7#2)
+I was unhappy with part one anyway, so instead of extending like in all other
+part 2s, redo it a bit more. Recursion again.
+
+### Puzzle 15 (day8)
+### Puzzle 16 (day8#2)
+arg. == != =
+map_with_index = each_with_index.map{|v,idx|}
 
 ## Recap
