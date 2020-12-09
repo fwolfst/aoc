@@ -6,7 +6,8 @@ So far, all puzzles read their input via `ARGF` (either pipe or enter data via
 STDIN  or pass file name(s) as argument).
 
 All done quick and dirty, basically without revisiting.  Don't want to win a
-beauty-award here.
+beauty-award here. My goal is to **find the solution while respecting the
+(non-mathematical) problem domain**.
 
 ### Puzzle 1
 
@@ -62,5 +63,9 @@ part 2s, redo it a bit more. Recursion again.
 ### Puzzle 16 (day8#2)
 arg. == != =
 map_with_index = each_with_index.map{|v,idx|}
+
+### Puzzle 17 (day9)
+Explode the combinations.
+### Puzzle 18 (day9#2)
 
 ## Recap
