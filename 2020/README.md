@@ -68,4 +68,15 @@ map_with_index = each_with_index.map{|v,idx|}
 Explode the combinations.
 ### Puzzle 18 (day9#2)
 
+### Puzzle 19 (day10)
+### Puzzle 20 (day10#2)
+That was yesterday.
+
+### Puzzle 21 (day11)
+Raise the solution in a non SRP-SeatMap.
+### Puzzle 21 (day11#2)
+Nothing to be proud of here. 
+Doing deep copies with `Marshal.load(Marshal.dum())` - I like it :)
+
 ## Recap
+
