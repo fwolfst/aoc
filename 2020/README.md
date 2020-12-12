@@ -78,5 +78,9 @@ Raise the solution in a non SRP-SeatMap.
 Nothing to be proud of here. 
 Doing deep copies with `Marshal.load(Marshal.dum())` - I like it :)
 
+### Puzzle 23 (day12)
+### Puzzle 24 (day12#2)
+I am sure there is a better rotation logic in the standard library.
+
 ## Recap
 
