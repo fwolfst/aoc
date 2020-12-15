@@ -74,13 +74,32 @@ That was yesterday.
 
 ### Puzzle 21 (day11)
 Raise the solution in a non SRP-SeatMap.
-### Puzzle 21 (day11#2)
+### Puzzle 22 (day11#2)
 Nothing to be proud of here. 
 Doing deep copies with `Marshal.load(Marshal.dum())` - I like it :)
 
 ### Puzzle 23 (day12)
 ### Puzzle 24 (day12#2)
 I am sure there is a better rotation logic in the standard library.
+
+### Puzzle 25 (day13)
+Pretty sure my approach will collapse for part two.
+### Puzzle 26 (day13#2)
+It doesnt. Curious if I hit max integer size though. Still didnt solve.
+Diphotonic functions.
+
+### Puzzle 27 (day14)
+Binary stuff. This time learn about printf %b and String.to_i/Integer.to_s
+Looked at input too late. Mask definitions can appear multiple times.
+### Puzzle 28 (day14#2)
+
+### Puzzle 29 (day15)
+### Puzzle 30 (day15#2)
+Whooo. Thats just a tiny change. Just for fun I tried a rather stupid
+optimization. The real optmization would have been to drop the list of said
+words alltogether, I guess. And I am not even sure that my optimization
+optimizes anything :)
+
 
 ## Recap
 
