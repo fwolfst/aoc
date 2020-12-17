@@ -86,7 +86,8 @@ I am sure there is a better rotation logic in the standard library.
 Pretty sure my approach will collapse for part two.
 ### Puzzle 26 (day13#2)
 It doesnt. Curious if I hit max integer size though. Still didnt solve.
-Diphotonic functions.
+Diphotonic functions. Fun, but need more time to sink into the issue. One way
+might be to calculate a non integer solution and scale it up.
 
 ### Puzzle 27 (day14)
 Binary stuff. This time learn about printf %b and String.to_i/Integer.to_s
@@ -100,6 +101,18 @@ optimization. The real optmization would have been to drop the list of said
 words alltogether, I guess. And I am not even sure that my optimization
 optimizes anything :)
 
+### Puzzle 31 (day17)
+Conways space of live. Small enough. But going with hash instead of modeling
+coordinate space (or single set of coordinates). Will the rules change at day2?
+or world size increase?
+### Puzzle 33 (day17#2)
+Okay, kinda both. Relatively trivial extension regarding the code.
+
 
 ## Recap
+
+As to expect after a couple of days, the code quality sank considerably. Its
+becoming an endurance test now.
+Problem 26 required a beefy machine, patience or some other skills. Mathematics
+might help a lot and I was a good mathematician once but lack a bit of training.
 
