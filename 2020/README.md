@@ -108,6 +108,11 @@ or world size increase?
 ### Puzzle 33 (day17#2)
 Okay, kinda both. Relatively trivial extension regarding the code.
 
+### Puzzle 35 (day18)
+Implementing a calculator. Somehow I did this different in university.
+### Puzzle 36 (day18#2)
+How not to implement a calculator.
+
 
 ## Recap
 
