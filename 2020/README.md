@@ -113,6 +113,13 @@ Implementing a calculator. Somehow I did this different in university.
 ### Puzzle 36 (day18#2)
 How not to implement a calculator.
 
+### Puzzle 37 (day19)
+Computer Linguistics was so fun at university. Automata and regular expressions
+kick ass. Coffee and passion would help find a clean solution.
+Did a complete rewrite before code was working.
+### Puzzle 38 (day19#2)
+Solution scaled well enough, no need to add modifications to the code.
+
 
 ## Recap
 
