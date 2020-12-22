@@ -120,6 +120,10 @@ Did a complete rewrite before code was working.
 ### Puzzle 38 (day19#2)
 Solution scaled well enough, no need to add modifications to the code.
 
+### Puzzle 41 (day21)
+### Puzzle 42 (day21#2)
+Same code.
+
 
 ## Recap
 
