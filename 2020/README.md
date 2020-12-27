@@ -88,6 +88,9 @@ Pretty sure my approach will collapse for part two.
 It doesnt. Curious if I hit max integer size though. Still didnt solve.
 Diphotonic functions. Fun, but need more time to sink into the issue. One way
 might be to calculate a non integer solution and scale it up.
+After trying brute-force with narrowing down the solution space and scribbling
+formulas down to papers, this is the first time during AOC where I extracted
+some plain utility functions in another file to do some experiments.
 
 ### Puzzle 27 (day14)
 Binary stuff. This time learn about printf %b and String.to_i/Integer.to_s
