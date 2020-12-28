@@ -127,6 +127,10 @@ Solution scaled well enough, no need to add modifications to the code.
 ### Puzzle 42 (day21#2)
 Same code.
 
+### Puzzle 43 (day22)
+### Puzzle 44 (day22#2)
+Card game galore!
+
 ### Puzzle 45 (day23)
 Was searching Enumerable#cycle and found it too late.
 ### Puzzle 46 (day23#2)
