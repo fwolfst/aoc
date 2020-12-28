@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Puzzle 17: https://adventofcode.com/2020/day/9
+# Puzzle 18: https://adventofcode.com/2020/day/9#day2
 # Felix Wolfsteller
 
 DEBUG = true
