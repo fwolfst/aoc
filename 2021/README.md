@@ -20,6 +20,12 @@ download is worth the time and fun.
 
 ### Part 2
 
+Solved each puzzle with `each_cons(n)`.
+Biggest problem was to put the `-d` flag for debug output in the right place
+and fighting with OSX terminal and MBP/OSX keyboard. I guess they didnt print
+the most interesting special characters on the keyboard due to visual design
+consinderations. Of course, "€" and "$" has to be there, though.
+
 ## Puzzle Day II
 
 ### Part 2

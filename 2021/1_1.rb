@@ -9,6 +9,13 @@ def dputs string ; STDERR.puts string if $DEBUG ; end
 
 dputs "enabled debugging output"
 
-lines = ARGF.readlines
+distances = ARGF.readlines.map &:to_i
+
+increases = 0
+distances.each_cons(2) do |first,second|
+  increases+=1 if second > first
+end
+
+puts increases
 
 exit 0
