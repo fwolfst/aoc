@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Puzzle 1: https://adventofcode.com/2021/day/1#part1
+# Puzzle 1: https://adventofcode.com/2021/day/3#part2
 # Felix Wolfsteller
 
 $DEBUG = (ARGV.delete '-d') ? true : false
