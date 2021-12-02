@@ -28,7 +28,8 @@ consinderations. Of course, "€" and "$" has to be there, though.
 
 ## Puzzle Day II
 
-### Part 2
+`Struct` to the rescue! I can actually still model the problem domain without
+thinking about algorithms or math.
 
 ## Puzzle Day III
 
