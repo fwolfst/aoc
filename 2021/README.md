@@ -31,6 +31,9 @@ consinderations. Of course, "€" and "$" has to be there, though.
 `Struct` to the rescue! I can actually still model the problem domain without
 thinking about algorithms or math.
 
+At the end I did turn to meta-stuff, adding a generator for the 13 lines of
+boilerplace code per day.
+
 ## Puzzle Day III
 
 ### Part 2
