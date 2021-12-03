@@ -37,10 +37,24 @@ boilerplace code per day.
 ## Puzzle Day III
 
 That was pretty horrible. Important lost knowledge to reactivate:
+  * Read whole puzzle before starting to implement anything
   * Hash with default Proc
   * Convert `to_i` early.
   * Use `Array#count` when counting in Arrays
 
 ### Part 2
 
+I wanted to use lambdas for filtering but that was too clever for this time of
+the day. What you would probably refactor first is to use the second filter as an
+inverse of the first and extract the consecutive filtering.
+With that, boil it down from 70 loc to 45 loc (including the boiling plate).
 
+
+# The Takeaways/Learned-Agains
+
+Should look at these again before next years puzzling.
+
+* <3 `ARGF` <3
+* `Array#count`
+* `Array#filter!` (just alias for `#select!`)
+* Binary Int as String -> Integer: `String#to_i 2`
