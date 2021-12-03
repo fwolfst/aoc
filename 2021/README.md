@@ -36,6 +36,11 @@ boilerplace code per day.
 
 ## Puzzle Day III
 
+That was pretty horrible. Important lost knowledge to reactivate:
+  * Hash with default Proc
+  * Convert `to_i` early.
+  * Use `Array#count` when counting in Arrays
+
 ### Part 2
 
 
