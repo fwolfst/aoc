@@ -49,6 +49,20 @@ the day. What you would probably refactor first is to use the second filter as a
 inverse of the first and extract the consecutive filtering.
 With that, boil it down from 70 loc to 45 loc (including the boiling plate).
 
+## Puzzle Day IV
+
+How to track the "hit" spaces on the board? How to figure out when a row or
+column is fully matched?
+
+Instead of tracking that and out of the laziness to look up how `Matrix` works,
+I wanted to proceed quickly and added an additional row and column to each
+"board"-array-of-arrays. So in the last column and the last row I would store
+how many hits have been within this row/column. As numbers are never drawn
+twice, I can figure out a winning board by looking at the last column/row.
+This makes calculating the score unintuive though: first I have to figure out
+which number where hit, second I have to remove the last column and row.
+
+Part 2 did not add very much to the table.
 
 # The Takeaways/Learned-Agains
 
@@ -58,3 +72,4 @@ Should look at these again before next years puzzling.
 * `Array#count`
 * `Array#filter!` (just alias for `#select!`)
 * Binary Int as String -> Integer: `String#to_i 2`
+* or use `i = Integer(y,2)` and access bits `i[1]`.
