@@ -64,6 +64,18 @@ which number where hit, second I have to remove the last column and row.
 
 Part 2 did not add very much to the table.
 
+## Puzzle Day V
+
+The fear of searching the algorithms from my Computer Graphic classes of how to
+figure out which pixels are hit "how much" by a line was luckily without
+reason. Stumbled over the regex-fu.
+
+### Part 2
+
+The diagonals hit me twice: 1) because descending ranges are empty in ruby 2)
+because even with diagonals, there are 4 variants of "directions" of lines and I
+chose to implement a step-wise-along-the-line-approach.
+
 # The Takeaways/Learned-Agains
 
 Should look at these again before next years puzzling.
@@ -73,3 +85,5 @@ Should look at these again before next years puzzling.
 * `Array#filter!` (just alias for `#select!`)
 * Binary Int as String -> Integer: `String#to_i 2`
 * or use `i = Integer(y,2)` and access bits `i[1]`.
+* Ruby doesnt have `descending ranges`: `(4..2).to_a == [] ; (2..4).to_a =
+  [2,3,4]`
