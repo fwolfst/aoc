@@ -76,6 +76,22 @@ The diagonals hit me twice: 1) because descending ranges are empty in ruby 2)
 because even with diagonals, there are 4 variants of "directions" of lines and I
 chose to implement a step-wise-along-the-line-approach.
 
+## Puzzle Day VI
+
+In part 1, do the real simulation (fun!)
+because we do not know where the ship is heading.
+
+### Part 2
+
+Guess what: solution from part 1 takes too long on my beloved Dell Latitude
+64xx.
+
+And I did not find the direct formula. Thus decided to only work on the distribution
+of fish ages (the order does not matter, for knowing how many fish there are
+tomorrow you only need to know how many will give birth).
+
+Superhappy to have finally used `Hash#tally`
+
 # The Takeaways/Learned-Agains
 
 Should look at these again before next years puzzling.
