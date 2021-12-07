@@ -92,6 +92,13 @@ tomorrow you only need to know how many will give birth).
 
 Superhappy to have finally used `Hash#tally`
 
+## Puzzle Day VII
+
+Used `IO#scan` instead of manual splitting.
+Did not find a fibonacci implementation in Rubys stdlib. And notice now that it
+is craB not craP.
+
+
 # The Takeaways/Learned-Agains
 
 Should look at these again before next years puzzling.
