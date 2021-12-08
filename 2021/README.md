@@ -98,6 +98,17 @@ Used `IO#scan` instead of manual splitting.
 Did not find a fibonacci implementation in Rubys stdlib. And notice now that it
 is craB not craP.
 
+## Puzzle Day VIII
+
+The moment where you get the creeps and then figure out you just have to count
+some elements.
+
+### Part 2
+
+Where you get the creeps and whish you would still have the Prolog-muscles. Or
+looked at the fascinating prolog/ruby projects. Or figured out earlier that
+there is a solution where you just need two deducive/combinatorial statements.
+At the end, you suppress the urge to beautify the code and go to work.
 
 # The Takeaways/Learned-Agains
 
