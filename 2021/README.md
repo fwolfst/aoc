@@ -95,7 +95,8 @@ Superhappy to have finally used `Hash#tally`
 ## Puzzle Day VII
 
 Used `IO#scan` instead of manual splitting.
-Did not find a fibonacci implementation in Rubys stdlib. And notice now that it
+Did not find a fibonacci implementation in Rubys stdlib (wouldnt have helped,
+its not fibonacci). And notice now that it
 is craB not craP.
 
 ## Puzzle Day VIII
@@ -109,6 +110,19 @@ Where you get the creeps and whish you would still have the Prolog-muscles. Or
 looked at the fascinating prolog/ruby projects. Or figured out earlier that
 there is a solution where you just need two deducive/combinatorial statements.
 At the end, you suppress the urge to beautify the code and go to work.
+
+## Puzzle Day IX
+
+Nice puzzle, long day without cleanup time.
+
+## Puzzle Day X
+
+The better Lisp.
+
+## Puzzle Day XI
+
+With some visualization. I like the spatial puzzles, and should extract some
+stuff, like the neighbour, "map"/matrix and printcode.
 
 # The Takeaways/Learned-Agains
 
