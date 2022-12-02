@@ -17,3 +17,7 @@ STDIN  or pass file name(s) as argument).
 
 Nothing particularly tricky here. The input is very small and my machine very beefy, so I chain every method of [Enumerable](https://ruby-doc.org/core-3.1.2/Enumerable.html) and [Array](https://ruby-doc.org/core-3.1.2/Array.html) I know of together.
 I was a bit surprised that there is no `reverse_sort` (documentation mentions `sort_by{..}.reverse!`).
+
+## Puzzle Day II
+
+Oh, my. I simple exploded all solutions, in the hope that this is faster than thinking through the math of Rock, Paper, Scissors. Took 25 minutes. Fastest responses on AOC were under 5 minutes. Math wins.
