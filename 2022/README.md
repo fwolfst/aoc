@@ -23,3 +23,7 @@ I was a bit surprised that there is no `reverse_sort` (documentation mentions `s
 Oh, my. I simple exploded all solutions, in the hope that this is faster than thinking through the math of Rock, Paper, Scissors. Took 25 minutes. Fastest responses on AOC were under 5 minutes. Math wins.
 
 Oh, my 2. The math is fun - index, subtract and use mod 3 (`% 3`). But some of the top 100 solvers did explode and lookup, just like me (but more concise and faster).
+
+### Puzzle Day III
+
+Learned different ways to split a string in half, but did not find that any was more expressive then what I had.
