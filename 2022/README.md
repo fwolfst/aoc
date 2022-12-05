@@ -27,3 +27,14 @@ Oh, my 2. The math is fun - index, subtract and use mod 3 (`% 3`). But some of t
 ### Puzzle Day III
 
 Learned different ways to split a string in half, but did not find that any was more expressive then what I had.
+
+### Puzzle Day IV
+
+Some confusion about `cover?` and `include?`, otherwise I am happy with my
+solution.
+
+## Puzzle Day V
+
+Searched something like `[] <<* ary.pop(3)`, but found nothing (`<< [1,2]` will
+push the `[1,2]` array, where I want the individual items in the array to be
+pushed). So had to resort to `[].push *ary.pop(3)`.
