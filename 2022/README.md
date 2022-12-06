@@ -38,3 +38,8 @@ solution.
 Searched something like `[] <<* ary.pop(3)`, but found nothing (`<< [1,2]` will
 push the `[1,2]` array, where I want the individual items in the array to be
 pushed). So had to resort to `[].push *ary.pop(3)`.
+
+## Puzzle Day VI
+
+Enumerable will stay our best friend, even if `each_slice` should have an option
+to behave like `each_cons`. Solutions could be condensed.
