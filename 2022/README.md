@@ -43,3 +43,14 @@ pushed). So had to resort to `[].push *ary.pop(3)`.
 
 Enumerable will stay our best friend, even if `each_slice` should have an option
 to behave like `each_cons`. Solutions could be condensed.
+
+## Puzzle Day VII
+
+Initiallize I wanted to play with Ruby 3.1s upcoming `Data` (~immutable Struct)
+implementation, but then I saw the time on the clock.
+
+I implemented a Struct instead and was able to stay close to the domain without
+crossing the bar of 50 lines of code.
+
+Niceties too look out for in the solutions: The "wtf, then I use `ObjectSpace`"-
+moment, and "I do not like chains" at the end.
