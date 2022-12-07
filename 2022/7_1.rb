@@ -21,7 +21,6 @@ end
 # root baby
 $root = Directory.new('/',0,[],nil)
 $cwd = $root
-$dirs = [$root]
 
 def handle_cmd(line)
   if line == '$ cd /'
