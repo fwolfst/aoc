@@ -54,3 +54,7 @@ crossing the bar of 50 lines of code.
 
 Niceties too look out for in the solutions: The "wtf, then I use `ObjectSpace`"-
 moment, and "I do not like chains" at the end.
+
+## Puzzle Day VIII
+
+Especially the second puzzles solution reads really indexy and does not show intent. Both puzzles would have gained in readability if I had used `matrix`. But I think its the first time that I used `Enumerable.take_while`. Happy about that.
