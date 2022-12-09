@@ -58,3 +58,8 @@ moment, and "I do not like chains" at the end.
 ## Puzzle Day VIII
 
 Especially the second puzzles solution reads really indexy and does not show intent. Both puzzles would have gained in readability if I had used `matrix`. But I think its the first time that I used `Enumerable.take_while`. Happy about that.
+
+## Puzzle Day IX
+
+I guess the jump from part 1 to part 2 troubled some. Although there is a warning, the full-on diagonal jump made me regret that I deleted the "adjacent?" check I had initially used for the first parts implementation.
+Used constants much more than in recent puzzles.
