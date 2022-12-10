@@ -63,3 +63,7 @@ Especially the second puzzles solution reads really indexy and does not show int
 
 I guess the jump from part 1 to part 2 troubled some. Although there is a warning, the full-on diagonal jump made me regret that I deleted the "adjacent?" check I had initially used for the first parts implementation.
 Used constants much more than in recent puzzles.
+
+## Puzzle Day X
+
+I love pixel and visualization puzzles. Somewhat ashamed that I derived the `( - 1 % 40)` part by trial and error.
