@@ -67,3 +67,7 @@ Used constants much more than in recent puzzles.
 ## Puzzle Day X
 
 I love pixel and visualization puzzles. Somewhat ashamed that I derived the `( - 1 % 40)` part by trial and error.
+
+## Puzzle Day XII
+
+Read the fxxxxxg puzzle, dude.
