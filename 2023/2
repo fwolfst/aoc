@@ -27,6 +27,15 @@ counts.each_with_index do |r,idx|
   end
 end
 
+puts "#1:"
+puts score
+
+score = 0
+counts.each_with_index do |r,idx|
+  score += (r[:reds] * r[:greens] * r[:blues])
+end
+
+puts "#2:"
 puts score
 
 __END__
