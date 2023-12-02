@@ -7,4 +7,38 @@ sum = digits.sum do |ds|
   ds.first.to_i * 10 + ds.last.to_i
 end
 
+puts "#1:"
 puts sum
+puts "--"
+
+nums = {
+  '1'     => '1',
+  '2'     => '2',
+  '3'     => '3',
+  '4'     => '4',
+  '5'     => '5',
+  '6'     => '6',
+  '7'     => '7',
+  '8'     => '8',
+  '9'     => '9',
+  'one'   => '1',
+  'two'   => '2',
+  'three' => '3',
+  'four'  => '4',
+  'five'  => '5',
+  'six'   => '6',
+  'seven' => '7',
+  'eight' => '8',
+  'nine'  => '9' }
+# 'nineight' => 98, not '9ight'
+
+regex = /(?=(#{nums.keys.join '|'}))/ # multiple matches via lookahead (?=(1|one|nine|eight)) 
+digits2 = input.lines.map{(_1.scan regex).flatten}
+
+sum2 = digits2.sum do |ds|
+  nums[ds.first].to_i * 10 + nums[ds.last].to_i
+end
+
+puts "#2:"
+puts sum2
+puts "--"
