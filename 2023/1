@@ -1,0 +1,10 @@
+#puts __FILE__
+
+input = File.read('1.input')
+digits = input.lines.map{_1.scan /\d/}
+
+sum = digits.sum do |ds|
+  ds.first.to_i * 10 + ds.last.to_i
+end
+
+puts sum
