@@ -11,8 +11,6 @@ other_numbers = []
 WIDTH = input.first.size
 HEIGHT= input.size
 
-# every digit should have a horizontal digit neighbor
-
 x, y = 0, 0
 
 while y < HEIGHT
@@ -31,53 +29,18 @@ end
 around_symbol = ->(n) do
   number, x, y = n
   len = number.length
-  ## before or after
-  #if x != 0 && input[y][x - 1] != '.'
-  #  next true
-  #end
-  #if (x + number.length) != WIDTH && input[y][x+len] != '.'
-  #  next true
-  #end
 
   from_left = [x-1,0].max
   to_right  = [x+len, WIDTH-1].min
   from_top  = [y-1,0].max
   to_butt   = [y+1, HEIGHT-1].min
 
-  #puts "number: " + number
   (from_top..to_butt).to_a.each do |yidx|
     if input[yidx][from_left..to_right] =~ /[^.0-9]/
-      puts input[yidx][from_left..to_right]
-      puts number
       return true
     end
   end
   return false
-end
-
-other_numbers = numbers.select do |number, x, y|
-  len = number.length
-  ## before or after
-  #if x != 0 && input[y][x - 1] != '.'
-  #  next true
-  #end
-  #if (x + number.length) != WIDTH && input[y][x+len] != '.'
-  #  next true
-  #end
-
-  from_left = [x-1,0].max
-  to_right  = [x+len, WIDTH-1].min
-  from_top  = [y-1,0].max
-  to_butt   = [y+1, HEIGHT-1].min
-
-  #puts "number: " + number
-  (from_top..to_butt).to_a.each do |yidx|
-    if input[yidx][from_left..to_right] =~ /[^.0-9]/
-      #puts input[yidx][from_left..to_right]
-      next true
-    end
-  end
-  false
 end
 
 part_numbers = numbers.select &around_symbol
@@ -88,6 +51,46 @@ puts "#1:"
 puts score
 
 score = 0
+
+y = 0
+x = 0
+$gears = {}
+while y < HEIGHT
+  while x < WIDTH
+    if input[y][x] == '*'
+      $gears[[x,y]] = []
+    end
+    x += 1
+  end
+  x = 0
+  y += 1
+end
+
+
+link_gear = ->(n) do
+  number, x, y = n
+  len = number.length
+
+  from_left = [x-1,0].max
+  to_right  = [x+len, WIDTH-1].min
+  from_top  = [y-1,0].max
+  to_butt   = [y+1, HEIGHT-1].min
+
+  (from_top..to_butt).to_a.each do |yidx|
+    (from_left..to_right).each do |xidx|
+      if input[yidx][xidx] == '*'
+        $gears[[xidx,yidx]] << number
+      end
+    end
+  end
+end
+numbers.each &link_gear
+
+$gears.each do |_loc, engines|
+  if engines.count == 2
+    score += engines.map(&:to_i).inject(&:*)
+  end
+end
 
 puts "#2:"
 puts score
