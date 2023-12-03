@@ -1,0 +1,105 @@
+#!/usr/bin/env ruby
+
+# Read from e.g. 2.input if no arg given, otherwise read example input from end of file.
+
+input = ARGV.empty? ? DATA.readlines(chomp: true) : File.new(__FILE__ + '.input').readlines(chomp: true)
+
+numbers       = [] # [number, x, y]
+part_numbers  = []
+other_numbers = []
+
+WIDTH = input.first.size
+HEIGHT= input.size
+
+# every digit should have a horizontal digit neighbor
+
+x, y = 0, 0
+
+while y < HEIGHT
+  while x < WIDTH
+    if input[y][x] =~ /\d/
+      len = input[y][x..].scan(/\d+/).first.size
+      numbers << [input[y][x...x+len], x, y]
+      x += len
+    end
+    x += 1
+  end
+  x = 0
+  y += 1
+end
+
+around_symbol = ->(n) do
+  number, x, y = n
+  len = number.length
+  ## before or after
+  #if x != 0 && input[y][x - 1] != '.'
+  #  next true
+  #end
+  #if (x + number.length) != WIDTH && input[y][x+len] != '.'
+  #  next true
+  #end
+
+  from_left = [x-1,0].max
+  to_right  = [x+len, WIDTH-1].min
+  from_top  = [y-1,0].max
+  to_butt   = [y+1, HEIGHT-1].min
+
+  #puts "number: " + number
+  (from_top..to_butt).to_a.each do |yidx|
+    if input[yidx][from_left..to_right] =~ /[^.0-9]/
+      puts input[yidx][from_left..to_right]
+      puts number
+      return true
+    end
+  end
+  return false
+end
+
+other_numbers = numbers.select do |number, x, y|
+  len = number.length
+  ## before or after
+  #if x != 0 && input[y][x - 1] != '.'
+  #  next true
+  #end
+  #if (x + number.length) != WIDTH && input[y][x+len] != '.'
+  #  next true
+  #end
+
+  from_left = [x-1,0].max
+  to_right  = [x+len, WIDTH-1].min
+  from_top  = [y-1,0].max
+  to_butt   = [y+1, HEIGHT-1].min
+
+  #puts "number: " + number
+  (from_top..to_butt).to_a.each do |yidx|
+    if input[yidx][from_left..to_right] =~ /[^.0-9]/
+      #puts input[yidx][from_left..to_right]
+      next true
+    end
+  end
+  false
+end
+
+part_numbers = numbers.select &around_symbol
+
+score = part_numbers.map(&:first).map(&:to_i).sum
+
+puts "#1:"
+puts score
+
+score = 0
+
+puts "#2:"
+puts score
+
+__END__
+467..114..
+...*......
+..35..633.
+......#...
+617*......
+.....+.58.
+..592.....
+......755.
+...$.*....
+.664.598..
