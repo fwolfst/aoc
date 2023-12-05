@@ -1,0 +1,98 @@
+#!/usr/bin/env ruby
+
+# Read from e.g. 2.input if no arg given, otherwise read example input from end of file.
+input = ARGV.empty? ? DATA.readlines(chomp: true) : File.new(__FILE__ + '.input').readlines(chomp: true)
+
+# The big bet when starting to implement the solution is:
+#   Lets hope there will be just one path to 'location'
+#   That bet was won, but the ranges are too big
+
+class ToMap
+  attr_accessor :to
+  attr_accessor :maps
+
+  def initialize(from_to)
+    @to = from_to.split(/[- ]/)[-2]
+    @maps = []
+  end
+
+  def hash()=@to.hash
+
+  def [](key)
+    maps.each do |(dest,source,len)|
+      if (source..(source + len)) === key
+        return dest + (key - source)
+      end
+    end
+    return key
+  end
+end
+
+seeds = input.first.scan(/\d+/).map &:to_i
+sections = input[1..].chunk_while {_1 != ''}.to_a.reject {_1 == ['']}
+
+maps = sections.map do |name, *maps|
+  to_map = ToMap.new(name)
+  maps.reject{_1==''}.each do |m|
+    (dest, source, len) = m.scan(/\d+/).map &:to_i
+    to_map.maps << [dest, source, len]
+  end
+  [
+    name.split(?-).first,
+    to_map
+  ]
+end.to_h
+
+score = seeds.map do |seed|
+  num = seed
+  at = 'seed'
+  while(at != 'location') do
+    num = maps[at][num]
+    at = maps[at].to
+  end
+  num
+end.min
+
+
+puts "#1:"
+puts score
+
+score = 0
+
+puts "#2:"
+puts score
+
+__END__
+seeds: 79 14 55 13
+
+seed-to-soil map:
+50 98 2
+52 50 48
+
+soil-to-fertilizer map:
+0 15 37
+37 52 2
+39 0 15
+
+fertilizer-to-water map:
+49 53 8
+0 11 42
+42 0 7
+57 7 4
+
+water-to-light map:
+88 18 7
+18 25 70
+
+light-to-temperature map:
+45 77 23
+81 45 19
+68 64 13
+
+temperature-to-humidity map:
+0 69 1
+1 0 69
+
+humidity-to-location map:
+60 56 37
+56 93 4
