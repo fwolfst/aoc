@@ -57,10 +57,127 @@ end.min
 puts "#1:"
 puts score
 
+# .......................2.......................
+# this is just a massacre
+
 score = 0
+
+more_seeds = seeds.each_slice(2).map do |start,num|
+  (start...(start + num))
+end
+
+Map     = Data.define(:range, :mod)
+Mapping = Data.define(:from, :to, :maps)
+
+mappings = sections.map do |name, *maplines|
+  maps = maplines.reject{_1==''}.map do |m|
+    (dest, source, len) = m.scan(/\d+/).map &:to_i
+    Map.new(range: (source...(source+len)), mod: dest - source)
+  end.sort do |a,b|
+    a.range.begin <=> b.range.begin
+  end
+  Mapping.new(
+    from: name.split(?-).first,
+    to: name.split(/[- ]/)[-2],
+    maps:
+  )
+end
+# [
+#   Mapping from: seed to: soil
+#     80..90   +10
+#     100..120 -40
+#   ...
+# ]
+
+# for exclusive integer (...) ranges!
+def overlap? r1, r2
+  r1.begin < (r2.end - 1) && (r1.end - 1) > r2.begin
+end
+
+
+# will return modified range first, up to two more afterwards
+def chop_mod_range incoming, chopper
+  return [(incoming.begin + chopper.mod)...(incoming.end + chopper.mod)] if chopper.range.cover?(incoming)
+  raise "chop_mod_range broken" if chopper.range.begin > incoming.end
+  raise "chop_mod_range broken" if chopper.range.end < incoming.begin
+
+  if incoming.begin < chopper.range.begin
+    if incoming.end > chopper.range.end
+      [(chopper.range.begin + chopper.mod)...(chopper.range.end + chopper.mod),
+       incoming.begin...chopper.range.begin,
+       (chopper.range.end...incoming.end)]
+    else
+      [(incoming.begin + chopper.mod)...(chopper.range.begin + chopper.mod),
+       chopper.range.begin...incoming.end]
+    end
+  else
+    [(incoming.begin + chopper.mod)...(chopper.range.end + chopper.mod),
+     chopper.range.end...incoming.end]
+  end
+end
+
+at = 'seed'
+work = more_seeds
+while at != 'location' do
+  current_map = mappings.find{_1.from == at}
+  puts current_map
+  next_work = []
+
+  work.each do |range|
+    chopper = current_map.maps.find {overlap?(_1.range, range)}
+    if chopper
+      if at == 'humidity'
+        puts "chopchop #{range} -> #{chopper.range} => #{chop_mod_range(range,chopper)}"
+      end
+      modded_range, *others = chop_mod_range(range, chopper)
+      work.push *others
+      next_work << modded_range
+    else
+      next_work << range
+    end
+  end
+  work = next_work
+  at = current_map.to
+end
+
+score = work.map(&:begin).min
 
 puts "#2:"
 puts score
+
+# Code nobody needs today
+# def range_split r1, r2
+#   # split in before, overlap, after
+#   if r2.cover?(r1.begin)
+#     before = r2.begin...r1.begin
+#     if r1.end < r2.end
+#       overlap = r1.dup
+#       after   = r1.end...r2.end
+#     else
+#       overlap = r1.begin...r2.end
+#       after   = r2.end...r2.end   # empty range
+#     end
+#   elsif r2.cover?(r1.end)
+#     before  = r1.begin...r2.begin
+#     overlap = r2.begin...r1.end
+#     after   = r1.end...r2.end
+#   elsif r1.cover?(r2)
+#     before  = r1.begin...r2.begin
+#     overlap = r2.dup
+#     after   = r2.end...r1.end
+#   elsif r1.end < r2.begin
+#     before  = r1.dup
+#     overlap = (0...0) # empty range
+#     after   = r2.dup
+#   elsif r2.end < r1.begin
+#     before  = r2.dup
+#     overlap = (0...0) # empty range
+#     after   = r1.dup
+#   else
+#     raise "condition in range_split left out!"
+#   end
+#   [before, overlap, after]
+# end
 
 __END__
 seeds: 79 14 55 13
