@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+# Read from e.g. 2.input if no arg given, otherwise read example input from end of file.
+
+input = ARGV.empty? ? DATA.readlines(chomp: true) : File.new(__FILE__ + '.input').readlines(chomp: true)
+
+# Brute-force is so much more elegant
+Race = Data.define(:time, :distance)
+
+numbersify = ->(line) { line.scan(/\d+/).map &:to_i }
+races = numbersify[input[0]].zip(numbersify[input[1]]).map{Race.new *_1}
+
+score = races.map do |race|
+  race.time.times.count { _1 * (race.time - _1) > race.distance }
+end.inject(&:*)
+
+puts "#1:"
+puts score
+
+score = 0
+
+puts "#2:"
+puts score
+
+__END__
+Time:      7  15   30
+Distance:  9  40  200
