@@ -17,7 +17,11 @@ end.inject(&:*)
 puts "#1:"
 puts score
 
-score = 0
+race = Race.new(input[0].gsub(/\s+/,'').scan(/\d+/).first.to_i,
+                input[1].gsub(/\s+/,'').scan(/\d+/).first.to_i)
+
+
+score = race.time.times.count { _1 * (race.time - _1) > race.distance }
 
 puts "#2:"
 puts score
