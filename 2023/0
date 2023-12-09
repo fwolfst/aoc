@@ -1,13 +1,26 @@
 #!/usr/bin/env ruby
 
+###########################################################
+# Advent of Code    adventofcode.com                      #
+#                   solutions from Felix Wolfsteller      #
+###########################################################
+
 # Read from e.g. 2.input if no arg given, otherwise read example input from end of file.
 
 input = ARGV.empty? ? DATA.readlines(chomp: true) : File.new(__FILE__ + '.input').readlines(chomp: true)
+
+###########################################################
+#                         Part 1                          #
+###########################################################
 
 score = 0
 
 puts "#1:"
 puts score
+
+###########################################################
+#                         Part 2                          #
+###########################################################
 
 score = 0
 
