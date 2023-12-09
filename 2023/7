@@ -27,9 +27,6 @@ Hand = Data.define(:cards, :bid, :string) do
     end
     return type
   end
-  def inspect
-    super
-  end
 end
 
 hands = input.map do |line|
@@ -72,7 +69,74 @@ end.sum
 puts "#1:"
 puts score
 
-score = 0
+Hand2 = Data.define(:cards, :bid, :string) do
+  def <=>(other)
+    if score != other.score
+      return score <=> other.score
+    end
+    cards.each_with_index do |c, idx|
+      if c != other.cards[idx]
+        return c <=> other.cards[idx]
+      end
+    end
+    raise "hands are eql?"
+  end
+
+  def score
+    tallies = cards.tally
+    js = tallies.delete(1).to_i # ("J")
+    type = tallies.values.max
+    if type == nil
+      puts self
+    end
+    type ||= 0
+    type += js
+    if type == 3 && tallies.count == 2
+      type = 3.5 # full house
+    end
+    if type == 2 && cards.tally.count == 3
+      type = 2.5 # two pairs
+    end
+    return type
+  end
+end
+
+hands = input.map do |line|
+  Hand2.new(
+    line.split.first.chars.map do |c|
+      if c =~ /\d/
+        c.to_i
+      else
+        case c
+        when 'T'
+          10
+        when 'J'
+          1
+        when 'Q'
+          12
+        when 'K'
+          13
+        when 'A'
+          14
+        else
+          raise "Unknown card"
+        end
+      end
+    end,
+    line.split.last.to_i,
+    line.split.first
+  )
+end
+
+sorted_hands = hands.sort
+
+sorted_hands.each_with_index do |hand, idx|
+  puts "#{idx + 1} #{'%d' % hand.score} #{hand.string} #{hand.bid}"
+end
+
+score = sorted_hands.each_with_index.map do |hand, idx|
+  hand.bid * (idx + 1)
+end.sum
 
 puts "#2:"
 puts score
