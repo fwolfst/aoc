@@ -1,0 +1,79 @@
+#!/usr/bin/env ruby
+
+###########################################################
+# Advent of Code    adventofcode.com 2023#8               #
+#                   solutions from Felix Wolfsteller      #
+###########################################################
+
+# Read from e.g. 2.input if no arg given, otherwise read example input from end of file.
+
+input = ARGV.empty? ? DATA.readlines(chomp: true) : File.new(__FILE__ + '.input').readlines(chomp: true)
+
+###########################################################
+#                         Part 1                          #
+###########################################################
+lr = input.first.chars.cycle
+
+nodes = input[2..].map do |line|
+  key, ways = line.split(" = ")
+  ways = ways.scan(/[A-Z0-9]+/)
+  [key, ways]
+end.to_h
+
+curr_node = 'AAA'
+score = 0
+while curr_node != 'ZZZ'
+  score += 1
+  ways = nodes[curr_node]
+  curr_dir = lr.next
+  if curr_dir == 'L'
+    curr_node = ways[0]
+  else
+    curr_node = ways[1]
+  end
+end
+
+puts "#1:"
+puts score
+
+###########################################################
+#                         Part 2                          #
+###########################################################
+
+score = 0
+
+starting_nodes = nodes.keys.select { _1.end_with? 'A' }
+
+curr_nodes = starting_nodes.dup
+score = 0
+while !curr_nodes.all? { _1.end_with? 'Z' }
+  score += 1
+  curr_dir = lr.next
+  curr_nodes.map! do |curr_node|
+    ways = nodes[curr_node]
+    if score % 100_0000 == 0 || curr_node.end_with?('Z')
+      p curr_node
+    end
+    if curr_dir == 'L'
+      ways[0]
+    else
+      ways[1]
+    end
+  end
+end
+
+
+puts "#2:"
+puts score
+
+__END__
+LR
+
+11A = (11B, XXX)
+11B = (XXX, 11Z)
+11Z = (11B, XXX)
+22A = (22B, XXX)
+22B = (22C, 22C)
+22C = (22Z, 22Z)
+22Z = (22B, 22B)
+XXX = (XXX, XXX)
