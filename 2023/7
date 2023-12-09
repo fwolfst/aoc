@@ -1,0 +1,85 @@
+#!/usr/bin/env ruby
+
+# Read from e.g. 2.input if no arg given, otherwise read example input from end of file.
+
+input = ARGV.empty? ? DATA.readlines(chomp: true) : File.new(__FILE__ + '.input').readlines(chomp: true)
+
+Hand = Data.define(:cards, :bid, :string) do
+  def <=>(other)
+    if score != other.score
+      return score <=> other.score
+    end
+    cards.each_with_index do |c, idx|
+      if c != other.cards[idx]
+        return c <=> other.cards[idx]
+      end
+    end
+    raise "hands are eql?"
+  end
+
+  def score
+    type = cards.tally.values.max
+    if type == 3 && cards.tally.count == 2
+      type = 3.5 # full house
+    end
+    if type == 2 && cards.tally.count == 3
+      type = 2.5 # two pairs
+    end
+    return type
+  end
+  def inspect
+    super
+  end
+end
+
+hands = input.map do |line|
+  Hand.new(
+    line.split.first.chars.map do |c|
+      if c =~ /\d/
+        c.to_i
+      else
+        case c
+        when 'T'
+          10
+        when 'J'
+          11
+        when 'Q'
+          12
+        when 'K'
+          13
+        when 'A'
+          14
+        else
+          raise "Unknown card"
+        end
+      end
+    end,
+    line.split.last.to_i,
+    line.split.first
+  )
+end
+
+sorted_hands = hands.sort 
+
+sorted_hands.each_with_index do |hand, idx|
+  puts "#{idx + 1} #{'%d' % hand.score} #{hand.string} #{hand.bid}"
+end
+
+score = sorted_hands.each_with_index.map do |hand, idx|
+  hand.bid * (idx + 1)
+end.sum
+
+puts "#1:"
+puts score
+
+score = 0
+
+puts "#2:"
+puts score
+
+__END__
+32T3K 765
+T55J5 684
+KK677 28
+KTJJT 220
+QQQJA 483
