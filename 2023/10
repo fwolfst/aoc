@@ -50,7 +50,6 @@ map = input.map do |line|
   line.chars.map {OPEN_ENDS[_1]}
 end.transpose.to_a
 
-#p map
 def map.width()= @width ||= size()
 def map.height()= @height ||= first.size()
 def map.in?(x,y)
@@ -96,18 +95,15 @@ while (path_one.keys & path_two.keys == [s_loc])
 
   next_one = map.connections(*curr_one).reject{ path_one.key?(_1)}.first
 
-  p '1 ' + curr_one.inspect
   path_one[next_one] = num_steps
   curr_one = next_one
 
 
-  p '2 ' + curr_two.inspect
   next_two = map.connections(*curr_two).reject{ path_two.key?(_1) }.first
 
   path_two[next_two] = num_steps
   curr_two = next_two
 end
-p num_steps
 
 score = num_steps
 
@@ -123,14 +119,33 @@ puts score
 #   if even then we are in, otherwise out?
 score = 0
 
-path = path_one.keys | path_two.keys
+require 'set'
+path = Set.new(path_one.keys | path_two.keys)
+p path
 
-map.width.times do |x|
-  map.height.times do |y|
+(0..(map.width() )).each do |x|
+  (0..(map.height() )).each do |y|
+    #puts "Raycasting #{x} | #{y}"
     next if path.include?([x,y])
-    score += 1 if ((0..x).count { path.include?([_1,y]) }.odd?)
-    p [x,y]
-    p (0..x).count { path.include?([_1,y]) }.even?
+    c_north = ((0...y).to_a.count { path.include?([x,_1]) })
+    #next if c_north == 0 || c_north.even?
+    c_south = (((y+1)...map.height).to_a.count { path.include?([x,_1]) })
+    #next if c_south == 0 || c_south.even?
+    c_east  = (((x+1)...map.width).to_a.count { path.include?([_1,y]) })
+    #next if c_east == 0 || c_east.even?
+    c_west  = ((0...x).to_a.count { path.include?([_1,y]) })
+    #next if c_west == 0 || c_west.even?
+    #score += 1
+    #p [x,y] if ((0...x).count { path.include?([_1,y]) }.odd?)
+    #c = (0..x).count { path.include?([_1,y]) }
+    #p c if ((0...x).count { path.include?([_1,y]) }.odd?)
+    if x >= 6 && x <= 8 && y >= 4 && y <= 7
+      puts "#{[x,y].inspect} : #{input[y][x]}"
+      puts "north #{c_north} south #{c_south} east #{c_east} west #{c_west}"
+    end
+    next if (c_north * c_south * c_east * c_west) == 0
+    #score += 1 if [c_north + c_south]., c_east, c_west].all?(&:odd?)
+    score += 1 if (c_north + c_south).even? && (c_east + c_west).even?
   end
 end
 
@@ -140,9 +155,38 @@ puts score
 ###########################################################
 #                         Example                         #
 ###########################################################
+# 8 parts
+#.F----7F7F7F7F-7....
+#.|F--7||||||||FJ....
+#.||.FJ||||||||L7....
+#FJL7L7LJLJ||LJ.L-7..
+#L--J.L7...LJS7F-7L7.
+#....F-J..F7FJ|L7L7L7
+#....L7.F7||L7|.L7L7|
+#.....|FJLJ|FJ|F7|.LJ
+#....FJL-7.||.||||...
+#....L---J.LJ.LJLJ...
+
+#10 parts
+#FF7FSF7F7F7F7F7F---7
+#L|LJ||||||||||||F--J
+#FL-7LJLJ||||||LJL-77
+#F--JF--7||LJLJ7F7FJ-
+#L---JF-JLJ.||-FJLJJ7
+#|F|F-JF---7F7-L7L|7|
+#|FFJF7L7F-JF7|JL---7
+#7-L-JL7||F7|L7F-7F7|
+#L.L7LFJ|||||FJL7||LJ
+#L7JLJL-JLJLJL--JLJ.L
+
 __END__
-7-F7-
-.FJ|7
-SJLL7
-|F--J
-LJ.LJ
+.F----7F7F7F7F-7....
+.|F--7||||||||FJ....
+.||.FJ||||||||L7....
+FJL7L7LJLJ||LJ.L-7..
+L--J.L7...LJS7F-7L7.
+....F-J..F7FJ|L7L7L7
+....L7.F7||L7|.L7L7|
+.....|FJLJ|FJ|F7|.LJ
+....FJL-7.||.||||...
+....L---J.LJ.LJLJ...
