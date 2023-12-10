@@ -1,0 +1,148 @@
+#!/usr/bin/env ruby
+
+###########################################################
+# Advent of Code    adventofcode.com                      #
+#                   solutions from Felix Wolfsteller      #
+###########################################################
+
+# Read from e.g. 2.input if no arg given, otherwise read example input from end of file.
+
+input = ARGV.empty? ? DATA.readlines(chomp: true) : File.new(__FILE__ + '.input').readlines(chomp: true)
+
+###########################################################
+#                         Part 1                          #
+###########################################################
+
+# split brain
+
+s_loc = input.map.with_index do |line,y|
+  x = line.index 'S'
+  if x.nil? || y.nil?
+    nil
+  else
+    [x,y]
+  end
+end.compact.flatten
+
+NORTH = [ 0,-1]
+EAST  = [ 1, 0]
+SOUTH = [ 0, 1]
+WEST  = [-1, 0]
+
+OPEN_ENDS = {
+  'S' => [NORTH, EAST, SOUTH, WEST],
+  '|' => [NORTH, SOUTH],
+  '-' => [WEST,  EAST],
+  'L' => [NORTH, EAST],
+  'J' => [NORTH, WEST],
+  '7' => [SOUTH, WEST],
+  'F' => [SOUTH, EAST],
+  '.' => []
+}
+COUNTER_DIRECTION = {
+  NORTH => SOUTH,
+  EAST  => WEST,
+  WEST  => EAST,
+  SOUTH => NORTH
+}
+
+map = input.map do |line|
+  line.chars.map {OPEN_ENDS[_1]}
+end.transpose.to_a
+
+#p map
+def map.width()= @width ||= size()
+def map.height()= @height ||= first.size()
+def map.in?(x,y)
+  ((0..width) === x) && ((0..height) === y)
+end
+def map.out?(...)= !in?(...)
+
+# neighbours only
+def map.connected?(x1,y1,x2,y2)
+  if x1 != x2
+    # horizontal
+    if x1 < x2
+      return self[x1][y1].include?(EAST) && self[x2][y2].include?(WEST)
+    else
+      return self[x1][y1].include?(WEST) && self[x2][y2].include?(EAST)
+    end
+  else
+    # vertical
+    if y1 < y2
+      return self[x1][y1].include?(SOUTH) && self[x2][y2].include?(NORTH)
+    else
+      return self[x1][y1].include?(NORTH) && self[x2][y2].include?(SOUTH)
+    end
+  end
+end
+
+def map.connections(x, y, i_come_from=nil)
+  all_outgoing = self[x][y].map { [x + _1[0], y + _1[1]] }.reject{out? *_1}
+  all_outgoing.reject! {!connected?(x,y,*_1)}
+  return all_outgoing if i_come_from.nil?
+  all_outgoing.select { _1.any?(i_come_from) }
+end
+
+starts = map.connections(*s_loc)
+num_steps = 1
+path_one = { s_loc => 0, starts[0] => 1 }
+path_two = { s_loc => 0, starts[1] => 1 }
+curr_one = starts[0]
+curr_two = starts[1]
+
+while (path_one.keys & path_two.keys == [s_loc])
+  num_steps += 1
+
+  next_one = map.connections(*curr_one).reject{ path_one.key?(_1)}.first
+
+  p '1 ' + curr_one.inspect
+  path_one[next_one] = num_steps
+  curr_one = next_one
+
+
+  p '2 ' + curr_two.inspect
+  next_two = map.connections(*curr_two).reject{ path_two.key?(_1) }.first
+
+  path_two[next_two] = num_steps
+  curr_two = next_two
+end
+p num_steps
+
+score = num_steps
+
+puts "#1:"
+puts score
+
+###########################################################
+#                         Part 2                          #
+###########################################################
+
+# Remembering something like:
+# draw lines to the outside, count crossing with path:
+#   if even then we are in, otherwise out?
+score = 0
+
+path = path_one.keys | path_two.keys
+
+map.width.times do |x|
+  map.height.times do |y|
+    next if path.include?([x,y])
+    score += 1 if ((0..x).count { path.include?([_1,y]) }.odd?)
+    p [x,y]
+    p (0..x).count { path.include?([_1,y]) }.even?
+  end
+end
+
+puts "#2:"
+puts score
+
+###########################################################
+#                         Example                         #
+###########################################################
+__END__
+7-F7-
+.FJ|7
+SJLL7
+|F--J
+LJ.LJ
