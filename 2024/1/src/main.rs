@@ -33,5 +33,14 @@ fn main() {
         sum += (nums_left[i] - nums_right[i]).abs();
         i += 1;
     }
+    println!("1:");
+    println!("{:?}", sum);
+
+    sum = 0;
+    for num in nums_left.iter() {
+       let count: i32 = nums_right.iter().filter(|&n| n == num).count() as i32;
+       sum += num * count;
+    }
+    println!("2:");
     println!("{:?}", sum);
 }
