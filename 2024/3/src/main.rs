@@ -29,7 +29,36 @@ fn main() {
     println!("one:");
     println!("{:?}", r);
 
+    // This seems to eat not enough :(
+    // let mult_off_on = Regex::new(r"don't\(\).*?do\(\)").unwrap();
+    // let after = mult_off_on.replace_all(&input, "");
 
-    //println!("two:");
-    //println!("{:?}", cnt);
+    let tokens = Regex::new(r"(mul\((\d+),(\d+)\)|don't\(\)|do\(\))").unwrap();
+
+    let mut enabled = true;
+
+    let mut r = 0;
+    for token in tokens.captures_iter(&input) {
+        //dbg!(&token);
+        let op = token.get(1).map_or("", |m| m.as_str());
+        if op.starts_with("mul") {
+            let m1: i32 =  token.get(2).map_or(0, |m| m.as_str().parse().unwrap());
+            let m2: i32 =  token.get(3).map_or(0, |m| m.as_str().parse().unwrap());
+            if enabled {
+                r += m1 * m2;
+            }
+        }
+        else if op.starts_with("do(") {
+            enabled = true;
+        }
+        else if op.starts_with("don") {
+            enabled = false;
+        }
+        else {
+            println!("Unknown token");
+        }
+    }
+
+    println!("two:");
+    println!("{:?}", r);
 }
