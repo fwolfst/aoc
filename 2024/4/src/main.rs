@@ -1,9 +1,14 @@
 use std::env;
 use std::fs;
-use regex::Regex;
 
+// unused
 fn is_xmas() -> bool {
     return false;
+}
+
+// Checks if xmas can occur in direction (in bounds)
+fn in_bounds(x: i32, y: i32, dir: (i32, i32), width: i32, height: i32) -> bool {
+    return (0..width).contains(&(x + dir.0 * 3)) && (0..height).contains(&(y + dir.1 * 3));
 }
 
 // "cargo run samples.txt"
@@ -18,33 +23,47 @@ fn main() {
     };
 
     let input = fs::read_to_string(&input_file).unwrap();
-    //let values = input.lines.map();
-    let values: Vec<Vec<char>> = input.lines().map(|line| line.chars().collect());
+
+    let values: Vec<Vec<char>> = input.lines().map(|l| l.chars().collect()).collect::<Vec<Vec<char>>>();
+
+    let width = values.len();
+    let height = values[0].len();
+
     //    -1
     // -1  x  +1
     //    +1
     let directions = [
         [ 1, 0],  // EAST,
-        [ 1, 1],  // SOUTH-EASH
+        [ 1, 1],  // SOUTH-EAST
         [ 0, 1],  // SOUTH
         [-1, 1],  // SOUTH-WEST
         [-1, 0],  // WEST
         [-1,-1],  // NORTH-WEST
         [ 0,-1],  // NORTH
-        [ 1,-1],  // NORTH
+        [ 1,-1],  // NORTH-EAST
     ];
 
+    // good ideas need to be written down.
     let xmas = ['X', 'M', 'A', 'S'];
     let mut r = 0;
 
-    // TODO need iter with index
-    for x in values {
-        for y in x {
-            for dir in directions {
-
-                //if in_bounds(x,y, input)
-                //is_xmas(input,x,y,dir)
-            }
+    // list comprehension anyone?
+    for (x, row) in values.iter().enumerate() {
+        for (y, value) in row.iter().enumerate() {
+           if value == &'X' {
+               dbg!(x, y, value);
+               for dir in directions {
+                    // this is certainly exactly how you should program in Rust
+                    if in_bounds(x.try_into().unwrap(), y.try_into().unwrap(), dir.into(), width.try_into().unwrap(), height.try_into().unwrap()) {
+                        if values[(x as i32 + dir[0] * 1) as usize][(y as i32 + dir[1] * 1) as usize] == 'M' &&
+                            // and this how you'd solve the puzzle
+                            values[(x as i32 + dir[0] * 2) as usize][(y as i32 + dir[1] * 2) as usize] == 'A' &&
+                                values[(x as i32 + dir[0] * 3) as usize][(y as i32 + dir[1] * 3) as usize] == 'S' {
+                            r += 1;
+                        }
+                    }
+               }
+           }
         }
     }
 
