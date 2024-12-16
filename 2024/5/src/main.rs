@@ -9,13 +9,13 @@ fn not_empty_line(line: &&str) -> bool {
 }
 
 // Check correct order
-fn middlenum_if_good(nums: &Vec<i32>, rules: &HashMap<i32,i32>) -> i32 {
+fn middlenum_if_good(nums: &Vec<i32>, rules: &HashMap<i32,Vec<i32>>) -> i32 {
     for (idx, needle) in nums.iter().enumerate() {
         if idx == 0 { continue }
 
         if rules.get(needle).is_some() {
-            let successor = rules[needle];
-            if nums.iter().take(idx).any(|n| n == &successor) {
+            let successors = &rules[needle];
+            if nums.iter().take(idx).any(|n| successors.iter().any(|s| s == n)) {
                 // rule broken
                 return 0;
             }
@@ -45,7 +45,7 @@ fn main() {
 
     let input = fs::read_to_string(&input_file).unwrap();
 
-    let mut rules : HashMap::<i32,i32> = HashMap::new();
+    let mut rules : HashMap::<i32,Vec<i32>> = HashMap::new();
     let mut dataset_separator_lineno : usize = 0;
 
     // rules = 
@@ -58,7 +58,10 @@ fn main() {
         .lines()
         .take_while(not_empty_line) {
         let nums : Vec::<i32> = line.split('|').map(|s| s.parse::<i32>().ok()).flatten().collect();
-        rules.insert(nums[0], nums[1]);
+        rules.entry(nums[0])
+            .or_insert_with(Vec::new)
+            .push(nums[1]);
+        //rules.insert(nums[0], nums[1]);
         dataset_separator_lineno += 1;
     }
 
@@ -75,6 +78,7 @@ fn main() {
     println!("one:");
     println!("{:?}", middlenums);
 
+    let mut r = 0;
     println!("two:");
     println!("{:?}", r);
 }
