@@ -51,7 +51,7 @@ fn main() {
     for (x, row) in values.iter().enumerate() {
         for (y, value) in row.iter().enumerate() {
            if value == &'X' {
-               dbg!(x, y, value);
+               //dbg!(x, y, value);
                for dir in directions {
                     // this is certainly exactly how you should program in Rust
                     if in_bounds(x.try_into().unwrap(), y.try_into().unwrap(), dir.into(), width.try_into().unwrap(), height.try_into().unwrap()) {
@@ -69,6 +69,23 @@ fn main() {
 
     println!("one:");
     println!("{:?}", r);
+
+    // OMG this feels so wrong
+    r = 0;
+    for x in (1..width - 1) {
+        for y in (1..height - 1) {
+            if values[y][x] == 'A' {
+                if (values[y-1][x-1] == 'S' && values[y+1][x+1] == 'M')
+                    || (values[y-1][x-1] == 'M' && values[y+1][x+1] == 'S') {
+                    if (values[y-1][x+1] == 'S' && values[y+1][x-1] == 'M')
+                        || (values[y-1][x+1] == 'M' && values[y+1][x-1] == 'S') {
+                            r += 1;
+                    }
+
+                }
+            }
+        }
+    }
     println!("two:");
     println!("{:?}", r);
 }
