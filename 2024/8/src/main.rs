@@ -3,6 +3,20 @@ use std::env;
 use itertools::Itertools;
 use std::fs;
 
+fn debug_map(map: &Vec<Vec<Vec<char>>>) {
+    for row in map.iter() {
+        for col in row.iter() {
+            if col.is_empty() {
+                print!(".");
+            }
+            else {
+                print!("#");
+            }
+        }
+        println!();
+    }
+}
+
 /// LEARN "documentation tests"
 /// `rustdoc --test src/main.rs`
 /// # Examples
@@ -50,11 +64,14 @@ fn solve(input: &str) -> i32 {
         }
     }
 
-    //let mut antinodes : Vec<Vec<Vec<char>>>;
+    debug_map(&antinodes);
+
     antinodes
         .iter()
-        .map(|row| row.iter().map(|col| col.iter().len()).sum::<usize>())
-        .sum::<usize>() as i32
+        .map(|row| row.iter().filter(|col| col.iter().len() > 0 ).count() as i32)
+        .sum::<i32>()
+        //.map(|row| row.iter().map(|col| col.iter().len()).sum::<usize>())
+        //.sum::<usize>() as i32
 }
 
 // "cargo run sample"
