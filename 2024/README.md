@@ -5,7 +5,7 @@ Challenge is not to use Copilot (not as integrated tool, but the webapp) and not
 
 ## Learnings
 
-* Puzzle Day 8: Testing
+* Puzzle Day 8: **Testing**
   1. `rustodoc --test src/main.rs` executes the tests within documentation (`/// `).
     That is why often the documentation code samples often have `assert_eq!(....)`s.
     Would it be nice to have this in Ruby, but maybe without
@@ -14,6 +14,6 @@ Challenge is not to use Copilot (not as integrated tool, but the webapp) and not
     The documentation says these will be executed with `cargo test`. On my setup, they aren't.
   2. Post-matter unit tests are trivial, use `#[test]` directive.
     These are included in `cargo test` runs.
-  3. Rust does not have a squiggly unindenting heredoc, like Ruby has.
+  3. Rust does not have a **squiggly unindenting heredoc**, like Ruby has.
     But someone wrote a macro for it, called `indoc`.
 
