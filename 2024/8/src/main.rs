@@ -1,6 +1,6 @@
+use std::collections::HashMap;
 use std::env;
 use std::fs;
-use std::process::exit;
 
 /// LEARN "documentation tests"
 /// `rustdoc --test src/main.rs`
@@ -10,7 +10,17 @@ use std::process::exit;
 /// assert_eq!(r, 3); // (will fail)
 /// ```
 fn solve(input: &str) -> i32 {
-    0
+    for (y, line) in input.lines().enumerate() {
+        for (x, chr) in line.chars().enumerate() {
+            if chr != '.' {
+
+            }
+        }
+    }
+
+    let mut antinodes : Vec<Vec<Vec<char>>>;
+    let mut frequency_emitter_locations : HashMap<char, Vec<(i32,i32)>>;
+    1
 }
 
 // "cargo run sample"
@@ -37,8 +47,8 @@ fn main() {
 mod tests {
     use super::*;
     use indoc::indoc;
-    #[test]
 
+    #[test]
     fn it_works() {
         let sample = indoc! {
             "............
