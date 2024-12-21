@@ -3,6 +3,8 @@ use std::env;
 //use itertools::Itertools;
 use std::fs;
 
+static FREE :i32 = -1;
+
 fn debug_mem(mem: &Vec<i32>) {
     for n in mem {
         if n < &0 {
@@ -16,8 +18,6 @@ fn debug_mem(mem: &Vec<i32>) {
 }
 
 fn checksum(mem: Vec<i32>) -> i64 {
-    const FREE : i32 = -1;
-
     let mut cursor: usize = 0;
     let mut checksum : i64 = 0;
     while cursor < mem.len() && mem[cursor] != FREE {
@@ -26,6 +26,21 @@ fn checksum(mem: Vec<i32>) -> i64 {
     }
 
     checksum
+}
+
+fn defrag1(mem: &mut Vec<i32>) {
+    let mut begin = 0;
+    let mut end = mem.len() - 1;
+    while end - 1 > begin {
+        let id = mem[end];
+        while mem[begin] != FREE {
+            begin += 1;
+        }
+        mem[begin] = id;
+        mem[end] = FREE;
+        end -= 1;
+    }
+
 }
 
 fn solve(input: &str) -> (i64, i64) {
@@ -61,23 +76,13 @@ fn solve(input: &str) -> (i64, i64) {
     println!("defrag");
 
     // condense/"defrag"
-    let mut begin = 0;
-    let mut end = mem.len() - 1;
-    while end - 1 > begin {
-        id = mem[end];
-        while mem[begin] != FREE {
-            begin += 1;
-        }
-        mem[begin] = id;
-        mem[end] = FREE;
-        end -= 1;
-    }
+    defrag1(&mut mem);
 
     //debug_mem(&mem);
     println!("scoring");
 
     // score
-    let mut checksum = checksum(mem);
+    let checksum = checksum(mem);
 
     println!("{}", size);
     (checksum,0)
@@ -110,7 +115,7 @@ mod tests {
     fn it_works() {
         let sample = "2333133121414131402\n";
 
-        assert_eq!(solve(sample), (1928, 1));
+        assert_eq!(solve(sample), (1928, 2858));
     }
 
     #[test]
