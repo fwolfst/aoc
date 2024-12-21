@@ -4,19 +4,14 @@ use std::env;
 use std::fs;
 
 // x,y
-static DIRECTIONS : [(i32,i32);4]= [
-    ( 1, 0),
-    ( 0, 1),
-    (-1, 0),
-    ( 0,-1)
-];
+static DIRECTIONS: [(i32, i32); 4] = [(1, 0), (0, 1), (-1, 0), (0, -1)];
 
 fn debug_mem() {
     println!();
 }
 
 fn uphills(x: usize, y: usize, value: u32, world: &Vec<Vec<u32>>) -> Vec<(usize, usize)> {
-    let mut list = Vec::<(usize,usize)>::new();
+    let mut list = Vec::<(usize, usize)>::new();
     list
 }
 
@@ -28,13 +23,12 @@ fn count_trails(x: usize, y: usize, world: &Vec<Vec<u32>>) -> i32 {
 }
 
 fn parse(input: &str) -> Vec<Vec<u32>> {
-    input.lines().map(|line| {
-        line.chars().map(|c| {
-            c as u32 - '0' as u32
-        }).collect()
-    }).collect()
+    input
+        .lines()
+        .map(|line| line.chars().map(|c| c as u32 - '0' as u32).collect())
+        .collect()
 }
-    
+
 fn solve(input: &str) -> (i64, i64) {
     let world = parse(input);
 
@@ -43,13 +37,13 @@ fn solve(input: &str) -> (i64, i64) {
         for (x, col) in row.iter().enumerate() {
             if *col == 0 {
                 // register in map
-                dbg!((&x,&y));
+                dbg!((&x, &y));
                 count_trails(x, y, &world);
             }
         }
     }
 
-    (0,0)
+    (0, 0)
 }
 
 // "cargo run sample"
@@ -61,7 +55,6 @@ fn main() {
     } else {
         "input".to_string()
     };
-
 
     let input = fs::read_to_string(input_file).unwrap();
 
@@ -101,7 +94,6 @@ mod tests {
              10456"
         };
 
-        assert_eq!(uphills(3,0,1,&parse(sample)),
-            vec![(4,0), (3,1)]);
+        assert_eq!(uphills(3, 0, 1, &parse(sample)), vec![(4, 0), (3, 1)]);
     }
 }
