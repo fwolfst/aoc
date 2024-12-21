@@ -16,4 +16,11 @@ Challenge is not to use Copilot (not as integrated tool, but the webapp) and not
     These are included in `cargo test` runs.
   3. Rust does not have a **squiggly unindenting heredoc**, like Ruby has.
     But someone wrote a macro for it, called `indoc`.
-
+* Puzzle Day 9: **Iteration**
+  1. you can iterate and modify a vector, but you can also just write C
+  2. slices > vec
+  3. `static` values
+* Puzzle Day 10: **Cargo**
+  1. Define bins in `Cargo.toml`
+  2. The defaults (`src/bin`) make a lot of sense, but i overwrite them for a flat feeling.
+  3. `cargo run` becomes `cargo run 10`.
