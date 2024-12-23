@@ -1,18 +1,18 @@
 use std::env;
 use std::fs;
 
-fn even_digits(num: i32) -> bool {
+fn even_digits(num: i64) -> bool {
     num.to_string().len() % 2 == 0
 }
 
-fn strnum_split(num: i32) -> Vec<i32> {
+fn strnum_split(num: i64) -> Vec<i64> {
     let string = num.to_string();
     let len = string.len();
     //(string[..len/2].parse().unwrap(), string[len/2..].parse().unwrap())
     vec![string[..len/2].parse().unwrap(), string[len/2..].parse().unwrap()]
 }
 
-fn evolve(world: &Vec<i32>) -> Vec<i32> {
+fn evolve(world: &Vec<i64>) -> Vec<i64> {
     world.iter().flat_map(|n| {
         if n == &0 {
             vec![1]
@@ -25,7 +25,7 @@ fn evolve(world: &Vec<i32>) -> Vec<i32> {
     }).collect()
 }
 
-fn parse(input: &str) -> Vec<i32> {
+fn parse(input: &str) -> Vec<i64> {
     input
         .lines()
         .flat_map(|line| line.split_whitespace().map(|w| w.parse().unwrap()))
