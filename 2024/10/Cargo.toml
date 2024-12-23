@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 indoc = "2" # "squiggly heredocs"
-#itertools = "0.13.0"
+itertools = "0.13.0"
 
 [[bin]]
 name = "10"
