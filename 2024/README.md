@@ -3,6 +3,8 @@
 Not a great year. Lets see how much we can do about it.
 Challenge is not to use Copilot (not as integrated tool, but the webapp) and not to be too ashamed - its public!
 
+From day 10 on, solution algorithms are in `src/`.
+
 ## Learnings
 
 * Puzzle Day 8: **Testing**
@@ -23,4 +25,7 @@ Challenge is not to use Copilot (not as integrated tool, but the webapp) and not
 * Puzzle Day 10: **Cargo**
   1. Define bins in `Cargo.toml`
   2. The defaults (`src/bin`) make a lot of sense, but i overwrite them for a flat feeling.
-  3. `cargo run` becomes `cargo run 10`.
+  3. `cargo run` becomes `cargo run 10` or `cargo run --bin 10`.
+  4. For tests, only `cargo run --bin 10` works.
+  5. `rustfmt` / `cargo fmt` can be run in vim with vim-autoformat plugin, but I remember that ther was some automatism via lsp, too 🤔
+  6. `unique` iterators is not as such in stdlib (called deduplication), but in itertools
