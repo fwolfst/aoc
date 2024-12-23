@@ -1,5 +1,13 @@
+use lazy_static::lazy_static;
+
+use std::collections::HashMap;
 use std::env;
 use std::fs;
+
+// From value x and y time to "how many elements"
+lazy_static! {
+    static ref CACHE :HashMap<(i64, usize),usize> = HashMap::<(i64, usize), usize>::new();
+}
 
 fn even_digits(num: i64) -> bool {
     num.to_string().len() % 2 == 0
@@ -25,6 +33,25 @@ fn evolve(world: &Vec<i64>) -> Vec<i64> {
     }).collect()
 }
 
+// using cache
+fn child_evolution(n: i64, time_left: usize) -> usize{
+    if CACHE.contains_key(&(n, time_left)) {
+        return *CACHE.get(&(n, time_left)).unwrap();
+    }
+    for t in time_left..=1 {
+        if n == 0 {
+            CACHE.insert((0,t),child_evolution(1,t-1));
+        } else if even_digits(n) {
+            let s = strnum_split(n);
+            CACHE.insert((0,t), child_evolution(s[0], t-1) + child_evolution(s[1], t -1));
+        } else {
+            //vec![n * 2024]
+        }
+        //CACHE.insert()
+    }
+    0
+}
+
 fn parse(input: &str) -> Vec<i64> {
     input
         .lines()
@@ -41,6 +68,9 @@ fn solve(input: &str) -> (usize, usize) {
 
     for _i in 1..=25 {
         world = evolve(&world);
+    }
+    for _i in 1..=75 {
+        //sum = child_evolution(&world.each).sum();
     }
 
     r1 = world.len();

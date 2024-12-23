@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 indoc = "2" # "squiggly heredocs"
 itertools = "0.13.0"
+lazy_static = "1.5"
 
 [[bin]]
 name = "10"
