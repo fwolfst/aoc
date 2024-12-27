@@ -8,7 +8,6 @@ edition = "2021"
 [dependencies]
 indoc = "2" # "squiggly heredocs"
 itertools = "0.13.0"
-lazy_static = "1.5"
 
 [[bin]]
 name = "10"
@@ -17,3 +16,7 @@ path = "src/10.rs"
 [[bin]]
 name = "11"
 path = "src/11.rs"
+
+[[bin]]
+name = "12"
+path = "src/12.rs"
