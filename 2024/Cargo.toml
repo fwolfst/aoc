@@ -6,8 +6,10 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+cargo-pretty-test = "0.2.5"
 indoc = "2" # "squiggly heredocs"
 itertools = "0.13.0"
+regex = "1.11.1"
 
 [[bin]]
 name = "10"
@@ -20,3 +22,7 @@ path = "src/11.rs"
 [[bin]]
 name = "12"
 path = "src/12.rs"
+
+[[bin]]
+name = "14"
+path = "src/14.rs"
